@@ -480,164 +480,6 @@ img {
   line-height: 1.3;
 }
 
-/* What I Actually Do Section Grid */
-.what-i-do-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 2.5rem;
-}
-
-.do-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 1.75rem;
-  transition: var(--transition-smooth);
-  position: relative;
-  overflow: hidden;
-}
-
-.do-card:hover {
-  border-color: var(--border-highlight);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-main);
-}
-
-.do-number {
-  font-family: var(--font-mono);
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--accent-emerald);
-  margin-bottom: 1rem;
-  opacity: 0.85;
-}
-
-.do-title {
-  font-size: 1.2rem;
-  margin-bottom: 0.75rem;
-  color: var(--text-primary);
-}
-
-.do-desc {
-  font-size: 0.925rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-/* Global Engineering Experience Grid */
-.global-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-top: 2.5rem;
-}
-
-.country-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  transition: var(--transition-smooth);
-}
-
-.country-card:hover {
-  border-color: var(--border-highlight);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-main);
-}
-
-.country-flag {
-  font-size: 2.5rem;
-  margin-bottom: 0.75rem;
-  line-height: 1;
-}
-
-.country-name {
-  font-size: 1.25rem;
-  margin-bottom: 0.35rem;
-  color: var(--text-primary);
-}
-
-.facility-tag {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--accent-cyan);
-  background: rgba(6, 182, 212, 0.1);
-  border: 1px solid rgba(6, 182, 212, 0.25);
-  border-radius: 4px;
-  padding: 0.2rem 0.6rem;
-  display: inline-block;
-  margin-bottom: 0.85rem;
-  font-weight: 600;
-}
-
-.facility-desc {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  line-height: 1.55;
-}
-
-/* Engineering Evidence & Control Schematics */
-.schematics-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 1.5rem;
-}
-
-.schematic-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.schematic-header {
-  padding: 1.25rem 1.5rem;
-  background: var(--bg-primary);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.schematic-badge {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--accent-amber);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  display: block;
-  margin-bottom: 0.35rem;
-}
-
-.schematic-header h4 {
-  font-size: 1.1rem;
-  color: var(--text-primary);
-}
-
-.schematic-body {
-  padding: 1rem;
-  background: rgba(7, 12, 24, 0.95);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.schematic-svg {
-  width: 100%;
-  height: auto;
-  max-height: 260px;
-}
-
-.schematic-footer {
-  padding: 1rem 1.5rem;
-  border-top: 1px solid var(--border-color);
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
 .hero-image-wrapper {
   position: relative;
   width: 100%;
@@ -1524,18 +1366,6 @@ textarea.form-control {
     margin: 0 auto;
   }
 
-  .what-i-do-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .global-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .schematics-grid {
-    grid-template-columns: 1fr;
-  }
-
   .pillars-grid {
     grid-template-columns: 1fr;
   }
@@ -1587,14 +1417,6 @@ textarea.form-control {
   .hero-proof-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
-  }
-
-  .what-i-do-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .global-grid {
-    grid-template-columns: 1fr;
   }
 
   .footer-container {
