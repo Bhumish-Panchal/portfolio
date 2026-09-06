@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('bp_portfolio_theme', newTheme);
     updateThemeIcon(newTheme);
-    showToast(`Switched to ${newTheme === 'light' ? 'Light' : 'Dark'} Mode`);
+    showToast(`Switched to ${newTheme === 'light' ? 'Light' : 'Dark'} Mode`, 'info');
   });
 
   function updateThemeIcon(theme) {
@@ -305,27 +305,43 @@ document.addEventListener('DOMContentLoaded', () => {
       const textToCopy = btn.getAttribute('data-copy');
       if (textToCopy) {
         navigator.clipboard.writeText(textToCopy).then(() => {
-          showToast(`Copied: ${textToCopy}`);
+          showToast(`Copied: ${textToCopy}`, 'info');
         });
       }
     });
   });
 
-  function showToast(message) {
+  function showToast(message, type = 'info') {
     const toast = document.getElementById('toastAlert');
     const toastMsg = document.getElementById('toastMessage');
+    const toastIcon = toast?.querySelector('i');
+    
     if (toast && toastMsg) {
       toastMsg.textContent = message;
+      
+      if (type === 'error') {
+        toast.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+        if (toastIcon) toastIcon.className = 'fas fa-exclamation-circle';
+      } else if (type === 'success') {
+        toast.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        if (toastIcon) toastIcon.className = 'fas fa-check-circle';
+      } else {
+        toast.style.background = 'var(--accent-gradient)';
+        if (toastIcon) toastIcon.className = 'fas fa-info-circle';
+      }
+
       toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
-      }, 4000);
+      }, 5000);
     }
   }
 
-  // 8. Mandatory Contact Form & Real Email Delivery Handler
+  // 8. Fully Functional Enquiry Form Handler (Background HTTP Delivery to bhumish.panchal@gmail.com)
   const contactForm = document.getElementById('contactForm');
-  contactForm?.addEventListener('submit', (e) => {
+  const submitBtn = contactForm?.querySelector('button[type="submit"]');
+
+  contactForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const senderName = document.getElementById('senderName')?.value.trim();
@@ -333,30 +349,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const subject = document.getElementById('messageSubject')?.value.trim();
     const message = document.getElementById('senderMessage')?.value.trim();
 
-    // Verify all mandatory fields
+    // Field Validation: Verify mandatory fields are properly filled in
     if (!senderName || !senderEmail || !subject || !message) {
-      showToast('Please fill out all mandatory fields before sending.');
+      showToast('Please fill out all mandatory fields.', 'error');
       return;
     }
 
-    // Construct Mailto URI to deliver email directly to Bhumish.panchal@gmail.com
-    const recipient = 'Bhumish.panchal@gmail.com';
-    const emailSubject = encodeURIComponent(`[Portfolio Inquiry] ${subject}`);
-    const emailBody = encodeURIComponent(
-      `Hello Bhumish,\n\nYou have received a new inquiry from your portfolio website:\n\n` +
-      `Sender Name: ${senderName}\n` +
-      `Sender Email: ${senderEmail}\n` +
-      `Subject: ${subject}\n\n` +
-      `Message Details:\n${message}\n\n` +
-      `---\nSent via Bhumish Panchal Personal Portfolio Website`
-    );
+    // Email Address Format Validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(senderEmail)) {
+      showToast('Please enter a valid email address.', 'error');
+      return;
+    }
 
-    const mailtoUrl = `mailto:${recipient}?subject=${emailSubject}&body=${emailBody}`;
+    // UI Loading State during background transmission
+    const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>Sending Message...</span> <i class="fas fa-spinner fa-spin"></i>`;
+    }
 
-    // Trigger user's email application directly
-    window.location.href = mailtoUrl;
+    try {
+      // Send background HTTP request via FormSubmit AJAX service directly to bhumish.panchal@gmail.com
+      const response = await fetch('https://formsubmit.co/ajax/bhumish.panchal@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: senderName,
+          email: senderEmail,
+          _replyto: senderEmail,
+          _subject: `[Portfolio Inquiry] ${subject}`,
+          subject: subject,
+          message: message,
+          _template: 'table'
+        })
+      });
 
-    showToast('Opening your email app to deliver this inquiry to Bhumish.panchal@gmail.com!');
-    contactForm.reset();
+      const result = await response.json();
+
+      if (response.ok && (result.success === 'true' || result.success === true || result.message?.includes('success') || result.message?.includes('sent'))) {
+        showToast('Message sent successfully! Thank you for reaching out.', 'success');
+        contactForm.reset();
+      } else {
+        throw new Error(result.message || 'Form submission failed');
+      }
+    } catch (error) {
+      console.error('Enquiry Delivery Error:', error);
+      showToast('Failed to send message. Please try again or email directly at bhumish.panchal@gmail.com', 'error');
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+      }
+    }
   });
 });

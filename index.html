@@ -578,7 +578,7 @@
     </div>
   </section>
 
-  <!-- Contact Section with Mandatory Fields & Direct Email Delivery -->
+  <!-- Contact Section with Mandatory Fields & Background Email Delivery -->
   <section id="contact" class="section">
     <div class="container">
       <div class="section-tag">GET IN TOUCH</div>
@@ -632,39 +632,42 @@
           </div>
         </div>
 
-        <!-- Contact Form with Mandatory Asterisks & Real Email Action -->
+        <!-- Contact Form with Mandatory Asterisks & Background Email Delivery -->
         <div class="contact-form">
-          <form id="contactForm">
+          <form id="contactForm" action="https://formsubmit.co/bhumish.panchal@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            
             <div class="form-group">
               <label class="form-label" for="senderName">
                 Your Full Name <span class="required-asterisk">*</span>
               </label>
-              <input type="text" id="senderName" class="form-control" placeholder="e.g. John Doe" required>
+              <input type="text" id="senderName" name="name" class="form-control" placeholder="e.g. John Doe" required>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="senderEmail">
                 Your Email Address <span class="required-asterisk">*</span>
               </label>
-              <input type="email" id="senderEmail" class="form-control" placeholder="e.g. john@company.com" required>
+              <input type="email" id="senderEmail" name="email" class="form-control" placeholder="e.g. john@company.com" required>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="messageSubject">
                 Inquiry / Opportunity Title <span class="required-asterisk">*</span>
               </label>
-              <input type="text" id="messageSubject" class="form-control" placeholder="e.g. Global R&D / Cooling Controls Consultation" required>
+              <input type="text" id="messageSubject" name="subject" class="form-control" placeholder="e.g. Global R&D / Cooling Controls Consultation" required>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="senderMessage">
                 Message Details <span class="required-asterisk">*</span>
               </label>
-              <textarea id="senderMessage" class="form-control" placeholder="Write your message details here..." required></textarea>
+              <textarea id="senderMessage" name="message" class="form-control" placeholder="Write your message details here..." required></textarea>
             </div>
 
             <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
-              <span class="required-asterisk">*</span> All fields are mandatory. Submitting will send an inquiry directly to <strong>Bhumish.panchal@gmail.com</strong>.
+              <span class="required-asterisk">*</span> All fields are mandatory. Submitting will deliver your inquiry directly to <strong>Bhumish.panchal@gmail.com</strong>.
             </p>
 
             <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
