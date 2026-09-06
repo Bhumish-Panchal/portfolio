@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: 'AI Server & Data Center Liquid Cooling Solutions',
       category: 'Next-Gen R&D Innovation',
       client: 'Atlas Copco Group / High-Density Data Center R&D',
-      context: 'Pioneering advanced liquid cooling architectures and thermal management systems designed specifically for high-density AI compute clusters, GPU server racks, and hyperscale data centers.',
+      context: 'Developing liquid cooling architectures and thermal management control systems designed specifically for high-density AI compute clusters, GPU server racks, and hyperscale data centers.',
       problem: 'High-density AI workloads generate extreme heat flux that traditional air cooling cannot mitigate, requiring direct-to-chip liquid cooling loops, precise coolant distribution units (CDUs), dynamic pump speed regulation, and thermal failure prevention.',
       role: 'R&D Product Development Specialist',
       responsibilities: [
