@@ -3,7 +3,7 @@
 */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Navigation Scroll Effect
+  // 1. Navigation Scroll Effect & Mobile Drawer
   const navbar = document.querySelector('.navbar');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -11,6 +11,32 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       navbar.classList.remove('scrolled');
     }
+  });
+
+  const mobileToggle = document.querySelector('.mobile-toggle');
+  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+  const mobileMenuClose = document.getElementById('mobileMenuClose');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  mobileToggle?.addEventListener('click', () => {
+    mobileMenuOverlay?.classList.add('active');
+    mobileMenuOverlay?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  });
+
+  function closeMobileMenu() {
+    mobileMenuOverlay?.classList.remove('active');
+    mobileMenuOverlay?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = 'auto';
+  }
+
+  mobileMenuClose?.addEventListener('click', closeMobileMenu);
+  mobileMenuOverlay?.addEventListener('click', (e) => {
+    if (e.target === mobileMenuOverlay) closeMobileMenu();
+  });
+
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
   });
 
   // 2. Nature Green Protection & Industrial Cooling Animated Background Canvas
