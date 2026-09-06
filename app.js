@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
       height = canvas.height = window.innerHeight;
     });
 
-    // Particle nodes representing eco-cooling thermodynamics
     const particles = [];
     const particleCount = 45;
 
@@ -50,8 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
-
-      // Render Nature Green & Industrial Liquid Fluid Stream Waves
       waveOffset += 0.015;
       
       // Wave 1: Eco Emerald Stream
@@ -86,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.fillStyle = grad2;
       ctx.fill();
 
-      // Render Floating Eco Particles & Telemetry Connections
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         p.x += p.speedX;
@@ -108,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fill();
         ctx.shadowBlur = 0;
 
-        // Connect nearby nodes with subtle eco-green laser lines
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
@@ -324,15 +319,44 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
-      }, 3000);
+      }, 4000);
     }
   }
 
-  // 8. Contact Form Simulation
+  // 8. Mandatory Contact Form & Real Email Delivery Handler
   const contactForm = document.getElementById('contactForm');
   contactForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    showToast('Thank you! Your message has been prepared for Bhumish Panchal.');
+
+    const senderName = document.getElementById('senderName')?.value.trim();
+    const senderEmail = document.getElementById('senderEmail')?.value.trim();
+    const subject = document.getElementById('messageSubject')?.value.trim();
+    const message = document.getElementById('senderMessage')?.value.trim();
+
+    // Verify all mandatory fields
+    if (!senderName || !senderEmail || !subject || !message) {
+      showToast('Please fill out all mandatory fields before sending.');
+      return;
+    }
+
+    // Construct Mailto URI to deliver email directly to Bhumish.panchal@gmail.com
+    const recipient = 'Bhumish.panchal@gmail.com';
+    const emailSubject = encodeURIComponent(`[Portfolio Inquiry] ${subject}`);
+    const emailBody = encodeURIComponent(
+      `Hello Bhumish,\n\nYou have received a new inquiry from your portfolio website:\n\n` +
+      `Sender Name: ${senderName}\n` +
+      `Sender Email: ${senderEmail}\n` +
+      `Subject: ${subject}\n\n` +
+      `Message Details:\n${message}\n\n` +
+      `---\nSent via Bhumish Panchal Personal Portfolio Website`
+    );
+
+    const mailtoUrl = `mailto:${recipient}?subject=${emailSubject}&body=${emailBody}`;
+
+    // Trigger user's email application directly
+    window.location.href = mailtoUrl;
+
+    showToast('Opening your email app to deliver this inquiry to Bhumish.panchal@gmail.com!');
     contactForm.reset();
   });
 });

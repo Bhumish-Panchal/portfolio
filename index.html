@@ -40,7 +40,10 @@
         <button id="themeToggleBtn" class="theme-toggle" aria-label="Toggle Theme">
           <i class="fas fa-sun"></i>
         </button>
-        <a href="#contact" class="btn btn-primary">Hire Bhumish</a>
+        <a href="#contact" class="btn btn-primary">
+          <i class="fas fa-envelope"></i>
+          <span>Get in Touch</span>
+        </a>
         <button class="mobile-toggle" aria-label="Open Menu">
           <i class="fas fa-bars"></i>
         </button>
@@ -74,7 +77,7 @@
           </a>
           <a href="#contact" class="btn btn-secondary">
             <i class="fas fa-paper-plane"></i>
-            <span>Get In Touch</span>
+            <span>Send Direct Message</span>
           </a>
           <button class="btn btn-outline copy-btn" data-copy="Bhumish.panchal@gmail.com">
             <i class="fas fa-envelope"></i>
@@ -575,13 +578,13 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact Section with Mandatory Fields & Direct Email Delivery -->
   <section id="contact" class="section">
     <div class="container">
       <div class="section-tag">GET IN TOUCH</div>
-      <h2 class="section-title">Let's Discuss Engineering Collaboration</h2>
+      <h2 class="section-title">Send a Direct Inquiry</h2>
       <p class="section-subtitle">
-        Whether you require senior controls expertise for global R&D, new product development, or AI server cooling solutions in EMEA, feel free to reach out.
+        Whether you require senior controls expertise for global R&D, new product development, or AI server cooling solutions in EMEA, feel free to submit your inquiry below.
       </p>
 
       <div class="contact-grid">
@@ -629,31 +632,43 @@
           </div>
         </div>
 
-        <!-- Contact Form -->
+        <!-- Contact Form with Mandatory Asterisks & Real Email Action -->
         <div class="contact-form">
           <form id="contactForm">
             <div class="form-group">
-              <label class="form-label" for="senderName">Your Name</label>
-              <input type="text" id="senderName" class="form-control" placeholder="John Doe" required>
+              <label class="form-label" for="senderName">
+                Your Full Name <span class="required-asterisk">*</span>
+              </label>
+              <input type="text" id="senderName" class="form-control" placeholder="e.g. John Doe" required>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="senderEmail">Email Address</label>
-              <input type="email" id="senderEmail" class="form-control" placeholder="john@company.com" required>
+              <label class="form-label" for="senderEmail">
+                Your Email Address <span class="required-asterisk">*</span>
+              </label>
+              <input type="email" id="senderEmail" class="form-control" placeholder="e.g. john@company.com" required>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="messageSubject">Subject / Opportunity Title</label>
-              <input type="text" id="messageSubject" class="form-control" placeholder="Global R&D / EMEA Cooling Controls Inquiry" required>
+              <label class="form-label" for="messageSubject">
+                Inquiry / Opportunity Title <span class="required-asterisk">*</span>
+              </label>
+              <input type="text" id="messageSubject" class="form-control" placeholder="e.g. Global R&D / Cooling Controls Consultation" required>
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="senderMessage">Message</label>
-              <textarea id="senderMessage" class="form-control" placeholder="Hi Bhumish, I would like to discuss..." required></textarea>
+              <label class="form-label" for="senderMessage">
+                Message Details <span class="required-asterisk">*</span>
+              </label>
+              <textarea id="senderMessage" class="form-control" placeholder="Write your message details here..." required></textarea>
             </div>
+
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+              <span class="required-asterisk">*</span> All fields are mandatory. Submitting will send an inquiry directly to <strong>Bhumish.panchal@gmail.com</strong>.
+            </p>
 
             <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-              <span>Send Message</span>
+              <span>Send Message to Bhumish</span>
               <i class="fas fa-paper-plane"></i>
             </button>
           </form>
