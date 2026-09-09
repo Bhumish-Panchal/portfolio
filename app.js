@@ -181,20 +181,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Case Studies Data & Modal Handler
   const caseStudiesData = {
     'ai-server-cooling': {
-      title: 'AI Server & Data Center Liquid Cooling Solutions',
+      title: 'Data Center & Liquid Cooling Solutions',
       category: 'Next-Gen R&D Innovation',
       client: 'Atlas Copco Group / High-Density Data Center R&D',
-      context: 'Developing liquid cooling architectures and thermal management control systems designed specifically for high-density AI compute clusters, GPU server racks, and hyperscale data centers.',
-      problem: 'High-density AI workloads generate extreme heat flux that traditional air cooling cannot mitigate, requiring direct-to-chip liquid cooling loops, precise coolant distribution units (CDUs), dynamic pump speed regulation, and thermal failure prevention.',
+      context: 'Developing liquid cooling architectures and thermal management control systems designed specifically for high-density compute clusters, server racks, and hyperscale data centers.',
+      problem: 'High-density compute workloads generate extreme heat flux that traditional air cooling cannot mitigate, requiring direct-to-chip liquid cooling loops, precise coolant distribution units (CDUs), dynamic pump speed regulation, and thermal failure prevention.',
       role: 'R&D Product Development Specialist',
       responsibilities: [
         'Researched and integrated high-precision thermal control logic for direct-to-chip and immersion cooling manifolds.',
-        'Engineered dynamic closed-loop PID control for Coolant Distribution Units (CDUs) to regulate flow rate, inlet pressure, and fluid delta-T under peak GPU compute loads.',
+        'Engineered dynamic closed-loop PID control for Coolant Distribution Units (CDUs) to regulate flow rate, inlet pressure, and fluid delta-T under peak compute loads.',
         'Optimized system energy efficiency, lowering PUE (Power Usage Effectiveness) while maintaining strict safety trip thresholds.',
         'Collaborated with global thermal engineers across Europe (EMEA) and Asia on next-generation heat recovery and liquid-to-refrigerant chiller integration.'
       ],
-      techStack: ['AI Server Liquid Cooling', 'Direct-to-Chip Cooling', 'CDU Control Logic', 'CODESYS', 'Thermal Telemetry', 'Precision Chillers'],
-      outcome: 'Engineered high-efficiency thermal control strategies for next-generation AI infrastructure, reducing cooling power consumption while preventing thermal throttling.'
+      techStack: ['Direct-to-Chip Cooling', 'CDU Control Logic', 'CODESYS', 'Thermal Telemetry', 'Precision Chillers'],
+      outcome: 'Engineered high-efficiency thermal control strategies for next-generation data center infrastructure, reducing cooling power consumption while preventing thermal throttling.'
     },
     'cooling-rnd': {
       title: 'Global Industrial Cooling & HVAC Control Architecture',
