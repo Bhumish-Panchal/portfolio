@@ -134,6 +134,35 @@
       </nav>
 
       <div class="nav-actions">
+        <!-- Interactive European Language Selector -->
+        <div class="lang-selector-wrapper">
+          <button id="langSelectBtn" class="lang-select-btn" aria-label="Select Language">
+            <span id="currentLangFlag">🇬🇧</span>
+            <span id="currentLangCode">EN</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="langDropdown" class="lang-dropdown" aria-hidden="true">
+            <button class="lang-option" data-lang="en" data-flag="🇬🇧" data-code="EN">
+              <span>🇬🇧</span> English
+            </button>
+            <button class="lang-option" data-lang="it" data-flag="🇮🇹" data-code="IT">
+              <span>🇮🇹</span> Italiano
+            </button>
+            <button class="lang-option" data-lang="fr" data-flag="🇫🇷" data-code="FR">
+              <span>🇫🇷</span> Français
+            </button>
+            <button class="lang-option" data-lang="de" data-flag="🇩🇪" data-code="DE">
+              <span>🇩🇪</span> Deutsch
+            </button>
+            <button class="lang-option" data-lang="nl" data-flag="🇳🇱" data-code="NL">
+              <span>🇳🇱</span> Nederlands
+            </button>
+            <button class="lang-option" data-lang="es" data-flag="🇪🇸" data-code="ES">
+              <span>🇪🇸</span> Español
+            </button>
+          </div>
+        </div>
+
         <button id="themeToggleBtn" class="theme-toggle" aria-label="Toggle Theme">
           <i class="fas fa-sun"></i>
         </button>
@@ -841,6 +870,10 @@
     <i class="fas fa-check-circle"></i>
     <span id="toastMessage">Action completed successfully.</span>
   </div>
+
+  <!-- Hidden Google Translate Element & Initialization -->
+  <div id="google_translate_element" style="display:none;"></div>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <!-- Application Script -->
   <script src="app.js"></script>

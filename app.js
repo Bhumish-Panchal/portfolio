@@ -432,4 +432,151 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // 9. Interactive European Language Selector & IP Geolocation Auto-Detection
+  const langSelectBtn = document.getElementById('langSelectBtn');
+  const langDropdown = document.getElementById('langDropdown');
+  const langSelectorWrapper = document.querySelector('.lang-selector-wrapper');
+  const currentLangFlag = document.getElementById('currentLangFlag');
+  const currentLangCode = document.getElementById('currentLangCode');
+  const langOptions = document.querySelectorAll('.lang-option');
+
+  const langMap = {
+    en: { flag: '🇬🇧', code: 'EN', name: 'English' },
+    it: { flag: '🇮🇹', code: 'IT', name: 'Italiano' },
+    fr: { flag: '🇫🇷', code: 'FR', name: 'Français' },
+    de: { flag: '🇩🇪', code: 'DE', name: 'Deutsch' },
+    nl: { flag: '🇳🇱', code: 'NL', name: 'Nederlands' },
+    es: { flag: '🇪🇸', code: 'ES', name: 'Español' }
+  };
+
+  const countryToLang = {
+    IT: 'it', // Italy -> Italian
+    FR: 'fr', // France -> French
+    MC: 'fr', // Monaco -> French
+    DE: 'de', // Germany -> German
+    AT: 'de', // Austria -> German
+    CH: 'de', // Switzerland -> German
+    NL: 'nl', // Netherlands -> Dutch
+    BE: 'nl', // Belgium -> Dutch / French
+    ES: 'es', // Spain -> Spanish
+    GB: 'en', // UK -> English
+    IE: 'en', // Ireland -> English
+    IN: 'en', // India -> English
+    US: 'en'  // USA -> English
+  };
+
+  // Toggle Language Dropdown
+  langSelectBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langSelectorWrapper?.classList.toggle('open');
+    const isOpen = langSelectorWrapper?.classList.contains('open');
+    langDropdown?.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!langSelectorWrapper?.contains(e.target)) {
+      langSelectorWrapper?.classList.remove('open');
+      langDropdown?.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+  // Handle Option Selection
+  langOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      const lang = option.getAttribute('data-lang');
+      const flag = option.getAttribute('data-flag');
+      const code = option.getAttribute('data-code');
+
+      if (lang && langMap[lang]) {
+        localStorage.setItem('user_selected_lang', lang);
+        applyLanguage(lang, flag, code);
+      }
+      langSelectorWrapper?.classList.remove('open');
+    });
+  });
+
+  function applyLanguage(lang, flag, code) {
+    if (!langMap[lang]) lang = 'en';
+    const targetFlag = flag || langMap[lang].flag;
+    const targetCode = code || langMap[lang].code;
+
+    if (currentLangFlag) currentLangFlag.textContent = targetFlag;
+    if (currentLangCode) currentLangCode.textContent = targetCode;
+
+    langOptions.forEach(opt => {
+      if (opt.getAttribute('data-lang') === lang) {
+        opt.classList.add('active');
+      } else {
+        opt.classList.remove('active');
+      }
+    });
+
+    setGoogleTranslateCookie(lang);
+    triggerGoogleTranslateSelect(lang);
+  }
+
+  function setGoogleTranslateCookie(lang) {
+    const domain = window.location.hostname;
+    document.cookie = `googtrans=/en/${lang}; path=/; domain=${domain}`;
+    document.cookie = `googtrans=/en/${lang}; path=/;`;
+  }
+
+  function triggerGoogleTranslateSelect(lang) {
+    const selectElem = document.querySelector('.goog-te-combo');
+    if (selectElem) {
+      if (selectElem.value !== lang) {
+        selectElem.value = lang;
+        selectElem.dispatchEvent(new Event('change'));
+      }
+    }
+  }
+
+  async function autoDetectCountryAndLanguage() {
+    const savedLang = localStorage.getItem('user_selected_lang');
+    if (savedLang && langMap[savedLang]) {
+      applyLanguage(savedLang);
+      return;
+    }
+
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2500);
+
+      const res = await fetch('https://ipapi.co/json/', { signal: controller.signal });
+      clearTimeout(timeoutId);
+
+      if (res.ok) {
+        const data = await res.json();
+        const country = data.country_code || data.country;
+        if (country && countryToLang[country]) {
+          applyLanguage(countryToLang[country]);
+          return;
+        }
+      }
+    } catch (err) {
+      console.log('IP Geolocation fallback to browser language:', err);
+    }
+
+    // Fallback: Browser language preference
+    const browserLang = (navigator.language || navigator.userLanguage || '').substring(0, 2).toLowerCase();
+    if (browserLang && langMap[browserLang]) {
+      applyLanguage(browserLang);
+    } else {
+      applyLanguage('en');
+    }
+  }
+
+  autoDetectCountryAndLanguage();
 });
+
+// Google Translate Element Global Initialization Function
+window.googleTranslateElementInit = function() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,it,fr,de,nl,es',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+};
