@@ -459,6 +459,38 @@ img {
   font-size: 1rem;
 }
 
+.hero-signature-quote {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(16, 185, 129, 0.1);
+  border-left: 3px solid var(--accent-emerald);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-top: 0.75rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  backdrop-filter: blur(8px);
+}
+
+.hero-signature-quote .quote-icon {
+  color: var(--accent-emerald);
+  font-size: 0.85rem;
+}
+
+.hero-signature-quote .quote-text {
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+.hero-signature-quote .quote-author {
+  font-weight: 700;
+  font-style: normal;
+  color: var(--accent-emerald);
+  margin-left: 0.2rem;
+}
+
 /* Gogo-Style Bottom Horizontal Credibility & Solutions Bar */
 .hero-bottom-bar {
   position: absolute;
