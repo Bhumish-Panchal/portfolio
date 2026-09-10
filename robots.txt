@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bhumish1998.github.io/portfolio/sitemap.xml
+Sitemap: https://bhumish-panchal.github.io/portfolio/sitemap.xml
