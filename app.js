@@ -497,6 +497,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  let googleTranslatePollTimer = null;
+
   function applyLanguage(lang, flag, code) {
     if (!langMap[lang]) lang = 'en';
     const targetFlag = flag || langMap[lang].flag;
@@ -519,17 +521,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setGoogleTranslateCookie(lang) {
     const domain = window.location.hostname;
-    document.cookie = `googtrans=/en/${lang}; path=/; domain=${domain}`;
-    document.cookie = `googtrans=/en/${lang}; path=/;`;
+    if (lang === 'en') {
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${domain}`;
+      document.cookie = `googtrans=/en/en; path=/;`;
+      document.cookie = `googtrans=/en/en; path=/; domain=${domain}`;
+    } else {
+      document.cookie = `googtrans=/en/${lang}; path=/;`;
+      document.cookie = `googtrans=/en/${lang}; path=/; domain=${domain}`;
+    }
   }
 
   function triggerGoogleTranslateSelect(lang) {
-    const selectElem = document.querySelector('.goog-te-combo');
-    if (selectElem) {
-      if (selectElem.value !== lang) {
-        selectElem.value = lang;
-        selectElem.dispatchEvent(new Event('change'));
+    if (googleTranslatePollTimer) {
+      clearInterval(googleTranslatePollTimer);
+      googleTranslatePollTimer = null;
+    }
+
+    let attempts = 0;
+    const maxAttempts = 30; // Poll up to 3s for GT widget to be ready
+
+    function doSelect() {
+      attempts++;
+      const selectElem = document.querySelector('.goog-te-combo');
+      if (selectElem) {
+        if (googleTranslatePollTimer) {
+          clearInterval(googleTranslatePollTimer);
+          googleTranslatePollTimer = null;
+        }
+
+        let targetVal = lang;
+        if (lang === 'en') {
+          const hasEnOption = Array.from(selectElem.options || []).some(opt => opt.value === 'en');
+          targetVal = hasEnOption ? 'en' : '';
+        }
+
+        selectElem.value = targetVal;
+        selectElem.dispatchEvent(new Event('change', { bubbles: true }));
+        selectElem.dispatchEvent(new Event('input', { bubbles: true }));
+        
+        if (typeof selectElem.onchange === 'function') {
+          selectElem.onchange();
+        }
+        return true;
       }
+
+      if (attempts >= maxAttempts) {
+        if (googleTranslatePollTimer) {
+          clearInterval(googleTranslatePollTimer);
+          googleTranslatePollTimer = null;
+        }
+      }
+      return false;
+    }
+
+    if (!doSelect()) {
+      googleTranslatePollTimer = setInterval(doSelect, 100);
     }
   }
 
@@ -579,4 +626,22 @@ window.googleTranslateElementInit = function() {
     layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
     autoDisplay: false
   }, 'google_translate_element');
+
+  // Immediately apply selected language once GT widget mounts
+  const savedLang = localStorage.getItem('user_selected_lang');
+  if (savedLang && savedLang !== 'en') {
+    let checkAttempts = 0;
+    const interval = setInterval(() => {
+      checkAttempts++;
+      const selectElem = document.querySelector('.goog-te-combo');
+      if (selectElem) {
+        clearInterval(interval);
+        selectElem.value = savedLang;
+        selectElem.dispatchEvent(new Event('change', { bubbles: true }));
+        selectElem.dispatchEvent(new Event('input', { bubbles: true }));
+      } else if (checkAttempts > 30) {
+        clearInterval(interval);
+      }
+    }, 100);
+  }
 };
