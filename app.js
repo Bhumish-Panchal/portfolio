@@ -484,14 +484,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle Option Selection
   langOptions.forEach(option => {
-    option.addEventListener('click', () => {
+    option.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
       const lang = option.getAttribute('data-lang');
       const flag = option.getAttribute('data-flag');
       const code = option.getAttribute('data-code');
 
       if (lang && langMap[lang]) {
+        const previousLang = localStorage.getItem('user_selected_lang') || 'en';
         localStorage.setItem('user_selected_lang', lang);
         applyLanguage(lang, flag, code);
+
+        // Perform clean reload if language changed to ensure complete DOM translation
+        if (previousLang !== lang) {
+          setTimeout(() => {
+            window.location.reload();
+          }, 80);
+        }
       }
       langSelectorWrapper?.classList.remove('open');
     });
@@ -504,8 +515,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetFlag = flag || langMap[lang].flag;
     const targetCode = code || langMap[lang].code;
 
-    if (currentLangFlag) currentLangFlag.textContent = targetFlag;
-    if (currentLangCode) currentLangCode.textContent = targetCode;
+    const flagElem = document.getElementById('currentLangFlag');
+    const codeElem = document.getElementById('currentLangCode');
+    if (flagElem) flagElem.textContent = targetFlag;
+    if (codeElem) codeElem.textContent = targetCode;
 
     langOptions.forEach(opt => {
       if (opt.getAttribute('data-lang') === lang) {
@@ -539,7 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let attempts = 0;
-    const maxAttempts = 30; // Poll up to 3s for GT widget to be ready
+    const maxAttempts = 30; // Poll up to 3s for GT widget
 
     function doSelect() {
       attempts++;
@@ -556,12 +569,13 @@ document.addEventListener('DOMContentLoaded', () => {
           targetVal = hasEnOption ? 'en' : '';
         }
 
-        selectElem.value = targetVal;
-        selectElem.dispatchEvent(new Event('change', { bubbles: true }));
-        selectElem.dispatchEvent(new Event('input', { bubbles: true }));
-        
-        if (typeof selectElem.onchange === 'function') {
-          selectElem.onchange();
+        if (selectElem.value !== targetVal) {
+          selectElem.value = targetVal;
+          selectElem.dispatchEvent(new Event('change', { bubbles: true }));
+          selectElem.dispatchEvent(new Event('input', { bubbles: true }));
+          if (typeof selectElem.onchange === 'function') {
+            selectElem.onchange();
+          }
         }
         return true;
       }
@@ -615,6 +629,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Continuously remove top Google Translate banner frame & keep body top at 0px
+  function enforceNoGoogleHeader() {
+    if (document.body.style.top !== '0px' && document.body.style.top !== '') {
+      document.body.style.top = '0px';
+    }
+    const gtFrames = document.querySelectorAll('iframe.goog-te-banner-frame, .goog-te-banner-frame, iframe.skiptranslate');
+    gtFrames.forEach(frame => {
+      frame.style.display = 'none';
+      frame.style.visibility = 'hidden';
+      frame.style.height = '0px';
+      frame.style.opacity = '0';
+      frame.style.pointerEvents = 'none';
+    });
+  }
+
+  setInterval(enforceNoGoogleHeader, 200);
+
   autoDetectCountryAndLanguage();
 });
 
@@ -627,16 +658,15 @@ window.googleTranslateElementInit = function() {
     autoDisplay: false
   }, 'google_translate_element');
 
-  // Immediately apply selected language once GT widget mounts
   const savedLang = localStorage.getItem('user_selected_lang');
-  if (savedLang && savedLang !== 'en') {
+  if (savedLang) {
     let checkAttempts = 0;
     const interval = setInterval(() => {
       checkAttempts++;
       const selectElem = document.querySelector('.goog-te-combo');
       if (selectElem) {
         clearInterval(interval);
-        selectElem.value = savedLang;
+        selectElem.value = savedLang === 'en' ? '' : savedLang;
         selectElem.dispatchEvent(new Event('change', { bubbles: true }));
         selectElem.dispatchEvent(new Event('input', { bubbles: true }));
       } else if (checkAttempts > 30) {
