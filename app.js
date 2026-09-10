@@ -181,36 +181,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Case Studies Data & Modal Handler
   const caseStudiesData = {
     'ai-server-cooling': {
-      title: 'Data Center & Liquid Cooling Solutions',
-      category: 'Next-Gen R&D Innovation',
-      client: 'Atlas Copco Group / High-Density Data Center R&D',
-      context: 'Developing liquid cooling architectures and thermal management control systems designed specifically for high-density compute clusters, server racks, and hyperscale data centers.',
-      problem: 'High-density compute workloads generate extreme heat flux that traditional air cooling cannot mitigate, requiring direct-to-chip liquid cooling loops, precise coolant distribution units (CDUs), dynamic pump speed regulation, and thermal failure prevention.',
-      role: 'R&D Product Development Specialist',
+      title: 'Multi-Unit Cooling Control with Centralized Master Panel',
+      category: 'Centralized Master Control Systems',
+      client: 'Atlas Copco Group / EMEA R&D',
+      context: 'Development of a centralized control architecture for installations with multiple cooling units operating as a single system. A master controller coordinates individual units through a server-based configuration, allowing the overall cooling capacity to be adapted according to actual system demand.',
+      problem: 'The main challenge was to coordinate multiple cooling units while maintaining stable temperature control, efficient capacity utilization, and balanced unit operation. The control strategy determines which units should operate, their required capacity, and fan operation based on system demand and configured operating conditions. The architecture also supports unit sequencing, load sharing, operating-status monitoring, and protection handling.',
+      role: 'Product Leader – Cooling Solutions EMEA',
       responsibilities: [
-        'Researched and integrated high-precision thermal control logic for direct-to-chip and immersion cooling manifolds.',
-        'Engineered dynamic closed-loop PID control for Coolant Distribution Units (CDUs) to regulate flow rate, inlet pressure, and fluid delta-T under peak compute loads.',
-        'Optimized system energy efficiency, lowering PUE (Power Usage Effectiveness) while maintaining strict safety trip thresholds.',
-        'Collaborated with global thermal engineers across Europe (EMEA) and Asia on next-generation heat recovery and liquid-to-refrigerant chiller integration.'
+        'Developed multi-unit master control logic to coordinate multiple cooling units from a centralized control panel based on required cooling capacity.',
+        'Implemented intelligent sequencing and capacity management, including unit ON/OFF decisions, fan control, load distribution, and operating-priority logic.',
+        'Tested and validated the complete system through loop testing and in-machine testing, refining the control algorithms for stable and reliable operation.',
+        'Coordinated international engineering teams and technical delivery, including PTMs, control specifications, documentation, training, and Global Customer Center support.'
       ],
-      techStack: ['Direct-to-Chip Cooling', 'CDU Control Logic', 'CODESYS', 'Thermal Telemetry', 'Precision Chillers'],
-      outcome: 'Engineered high-efficiency thermal control strategies for next-generation data center infrastructure, reducing cooling power consumption while preventing thermal throttling.'
+      techStack: ['CODESYS', 'Master/Slave Control', 'Multi-Unit Sequencing', 'Capacity Management', 'Fan Speed Control', 'Load Sharing', 'System Monitoring'],
+      outcome: 'Enabled multiple cooling units to operate as one coordinated system through centralized master control. Improved capacity utilization and operating efficiency by matching active units and fan operation to actual cooling demand. Reduced unnecessary unit operation through automatic sequencing and demand-based control. Created a scalable control architecture that can be adapted to different system capacities and field configurations.'
     },
     'cooling-rnd': {
-      title: 'Global Industrial Cooling & HVAC Control Architecture',
-      category: 'Global R&D & Product Development (NPD)',
-      client: 'Atlas Copco Airtec (Belgium) / Eurochiller (Italy)',
-      context: 'Collaborating across Atlas Copco Global Engineering Centers in India, Belgium, and Italy to design, optimize, and standardize control systems for new industrial AIR chillers, cooler units, and Heat Pumps used in process cooling and HVAC applications.',
-      problem: 'Integrating multi-refrigerant thermodynamic circuits with dynamic compressor loading, electronic expansion valves, and variable frequency drives while ensuring high energy efficiency, fault-tolerant reliability, and seamless compliance across European and Asian regulatory standards.',
-      role: 'R&D Product Development Specialist, Cooling Solutions EMEA',
+      title: 'Global Energy-Efficient Cooler & Adiabatic Control Architecture',
+      category: 'New Energy-Efficient Air Cooler & Adiabatic Cooling System',
+      client: 'Atlas Copco Group / EMEA R&D',
+      context: 'Collaborating with international R&D and engineering teams across Europe and Asia to develop, upgrade, and standardize control systems for air coolers and adiabatic coolers used in industrial cooling applications. The project focuses on improving the existing control architecture through advanced sequencing, demand-based adiabatic operation, optimized fan control, water-saving strategies, automatic cleaning functions, reverse fan operation, and robust protection logic.',
+      problem: 'Developing a sophisticated yet reliable control strategy for air and adiabatic cooling systems that can achieve high cooling performance with lower energy and water consumption. The key challenge was to coordinate multiple operating functions—including fan control, adiabatic water management, automatic cleaning, reverse operation, antifreeze protection, temperature/pressure monitoring, and safety functions—while maintaining stable operation under changing ambient and load conditions. The control philosophy was designed to make the system more autonomous, energy-efficient, water-conscious, and easier to operate and maintain, while supporting different customer and regional requirements.',
+      role: 'Product Leader – Cooling Solutions EMEA',
       responsibilities: [
-        'Developed custom control logic using CODESYS for Atlas Copco MK5 proprietary controllers.',
-        'Tested, validated, and optimized control algorithms for temperature precision, pressure limits, and safety trip thresholds.',
-        'Participated in PTM (Product Team Meetings), TCM (Technical Change Management), and Master Specification activities.',
-        'Prepared technical documentation, sales calculation tools, and application guidance for global Customer Centers.'
+        'Led control-system product development for air and adiabatic coolers, including advanced CODESYS logic for fan control, water management, automatic cleaning, reverse operation, and antifreeze protection.',
+        'Coordinated international R&D teams through regular Local & Division PTMs, aligning technical requirements, project timelines, testing activities, and product development priorities.',
+        'Tested and validated the complete control strategy through loop testing and in-machine testing, optimizing algorithms for reliable, stable, energy-efficient, and water-conscious operation.',
+        'Owned technical delivery and knowledge transfer, including control specifications, documentation release, training programs, and coordination with Global Customer Centers.'
       ],
-      techStack: ['CODESYS', 'Atlas Copco MK5 Controller', 'Industrial AIR Chillers', 'Heat Pumps', 'HVAC Protocols', 'Modbus / Ethernet/IP'],
-      outcome: 'Successfully delivered robust control systems for next-generation chiller products, boosting system COP (Coefficient of Performance) and standardizing control logic across international manufacturing sites.'
+      techStack: ['Air Coolers', 'Adiabatic Systems', 'CODESYS', 'Fan Control', 'Water Management', 'Antifreeze Protection'],
+      outcome: 'Delivered a more automated and intelligent cooler control platform, reducing the need for manual operation through automatic cleaning, adiabatic management, and antifreeze functions. Improved energy and water management through demand-based fan and adiabatic control, avoiding unnecessary cooling and water usage. Established a validated and standardized control approach through systematic loop and machine testing, improving reliability before product release. Enabled global engineering and customer-center adoption through structured documentation, training, and technical coordination.'
     },
     'plantpax-dcs': {
       title: 'Rockwell PlantPAx DCS & 21 CFR Part 11 Audit Integration',
