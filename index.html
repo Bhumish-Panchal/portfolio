@@ -24,14 +24,16 @@
     })(window, document, "clarity", "script", "yg7cek59s3");
   </script>
   
-  <!-- Favicon / Icons -->
-  <link rel="icon" type="image/png" sizes="512x512" href="https://bhumish-panchal.github.io/portfolio/assets/favicon-512x512.png">
+  <!-- Favicon / Icons (Googlebot-Favicon Compliant: 48x48+ multiples of BP logo) -->
+  <link rel="icon" type="image/png" sizes="48x48" href="https://bhumish-panchal.github.io/portfolio/assets/bp_logo_favicon.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://bhumish-panchal.github.io/portfolio/assets/bp_logo_favicon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="https://bhumish-panchal.github.io/portfolio/assets/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="https://bhumish-panchal.github.io/portfolio/assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="https://bhumish-panchal.github.io/portfolio/assets/favicon-16x16.png">
-  <link rel="icon" type="image/x-icon" href="https://bhumish-panchal.github.io/portfolio/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="https://bhumish-panchal.github.io/portfolio/assets/favicon-512x512.png">
   <link rel="shortcut icon" href="https://bhumish-panchal.github.io/portfolio/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="https://bhumish-panchal.github.io/portfolio/assets/apple-touch-icon.png">
+
+  <!-- Primary Page Image & Thumbnail for Google Search Result Snippet -->
+  <link rel="image_src" href="https://bhumish-panchal.github.io/portfolio/assets/bhumish_ceo_portrait.jpg">
 
   <!-- SEO Meta Tags -->
   <meta name="description" content="Official Personal Portfolio of Bhumish Panchal - R&D Product Development Specialist specializing in Cooling Solutions EMEA, Industrial Automation, Liquid Cooling Systems, and DCS Systems.">
@@ -49,6 +51,11 @@
   <meta property="og:description" content="Official Personal Portfolio of Bhumish Panchal - R&D Product Development Specialist specializing in Cooling Solutions EMEA, Industrial Automation, Liquid Cooling Systems, and DCS Systems.">
   <meta property="og:url" content="https://bhumish-panchal.github.io/portfolio/">
   <meta property="og:image" content="https://bhumish-panchal.github.io/portfolio/assets/bhumish_ceo_portrait.jpg">
+  <meta property="og:image:secure_url" content="https://bhumish-panchal.github.io/portfolio/assets/bhumish_ceo_portrait.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+  <meta property="og:image:alt" content="Bhumish Panchal - R&D Product Development Specialist">
   <meta property="profile:first_name" content="Bhumish">
 
   <!-- WebSite Schema for Google Search Site Name -->
@@ -79,6 +86,8 @@
     "familyName": "Panchal",
     "url": "https://bhumish-panchal.github.io/portfolio/",
     "image": "https://bhumish-panchal.github.io/portfolio/assets/bhumish_ceo_portrait.jpg",
+    "primaryImageOfPage": "https://bhumish-panchal.github.io/portfolio/assets/bhumish_ceo_portrait.jpg",
+    "logo": "https://bhumish-panchal.github.io/portfolio/assets/bp_logo_favicon.png",
     "jobTitle": "R&D Product Development Specialist",
     "worksFor": {
       "@type": "Organization",
@@ -123,7 +132,7 @@
   <header class="navbar">
     <div class="container nav-container">
       <a href="#hero" class="brand-logo">
-        <img src="assets/bp_logo_favicon.png" alt="BP Logo" class="brand-icon-img">
+        <img src="assets/bp_logo_favicon.png" alt="BP Logo" class="brand-icon-img" itemprop="logo">
         <span>Bhumish Panchal</span>
       </a>
 
@@ -230,7 +239,7 @@
       <!-- Right Column: Front Executive Card -->
       <div class="hero-image-wrapper">
         <div class="hero-image-card">
-          <img src="assets/bhumish_ceo_portrait.jpg" alt="Bhumish Panchal - R&D Product Development Specialist, Cooling Solutions EMEA" class="hero-img">
+          <img src="assets/bhumish_ceo_portrait.jpg" alt="Bhumish Panchal - R&D Product Development Specialist, Cooling Solutions EMEA" class="hero-img" itemprop="image">
           <div class="hero-badge-floating">
             <div class="badge-icon">
               <i class="fas fa-leaf"></i>
