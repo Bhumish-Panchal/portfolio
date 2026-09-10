@@ -493,16 +493,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const code = option.getAttribute('data-code');
 
       if (lang && langMap[lang]) {
-        const previousLang = localStorage.getItem('user_selected_lang') || 'en';
         localStorage.setItem('user_selected_lang', lang);
+        setGoogleTranslateCookie(lang);
         applyLanguage(lang, flag, code);
 
-        // Perform clean reload if language changed to ensure complete DOM translation
-        if (previousLang !== lang) {
-          setTimeout(() => {
-            window.location.reload();
-          }, 80);
-        }
+        // Instant clean reload so Google Translate renders clean target DOM
+        setTimeout(() => {
+          window.location.reload();
+        }, 50);
       }
       langSelectorWrapper?.classList.remove('open');
     });
@@ -533,15 +531,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function setGoogleTranslateCookie(lang) {
-    const domain = window.location.hostname;
+    const path = window.location.pathname.startsWith('/portfolio') ? '/portfolio/' : '/';
     if (lang === 'en') {
       document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${domain}`;
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path};`;
       document.cookie = `googtrans=/en/en; path=/;`;
-      document.cookie = `googtrans=/en/en; path=/; domain=${domain}`;
+      document.cookie = `googtrans=/en/en; path=${path};`;
     } else {
       document.cookie = `googtrans=/en/${lang}; path=/;`;
-      document.cookie = `googtrans=/en/${lang}; path=/; domain=${domain}`;
+      document.cookie = `googtrans=/en/${lang}; path=${path};`;
     }
   }
 
