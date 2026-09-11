@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="csRedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2001A"/>
+      <stop offset="100%" stop-color="#990012"/>
+    </linearGradient>
+    <linearGradient id="csDarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C40016"/>
+      <stop offset="100%" stop-color="#7A000E"/>
+    </linearGradient>
+    <linearGradient id="csLightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF1A35"/>
+      <stop offset="100%" stop-color="#E2001A"/>
+    </linearGradient>
+  </defs>
+  <!-- CODESYS 3D Cube Structure -->
+  <!-- Top Face -->
+  <polygon points="100,25 155,55 100,85 45,55" fill="url(#csLightGrad)" />
+  <!-- Left Face -->
+  <polygon points="45,55 100,85 100,150 45,120" fill="url(#csRedGrad)" />
+  <!-- Right Face -->
+  <polygon points="100,85 155,55 155,120 100,150" fill="url(#csDarkGrad)" />
+  
+  <!-- C Cutout / Inset Geometry on Cube -->
+  <polygon points="100,45 130,62 100,80 70,62" fill="#FFFFFF" opacity="0.9" />
+  <polygon points="70,62 100,80 100,120 70,102" fill="#FFFFFF" opacity="0.75" />
+  <polygon points="100,80 130,62 130,102 100,120" fill="#FFFFFF" opacity="0.6" />
+</svg>

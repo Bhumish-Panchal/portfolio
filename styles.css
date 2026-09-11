@@ -499,7 +499,7 @@ body {
   color: var(--accent-emerald);
 }
 
-/* Hero Section with Gogo-Inspired Full-Bleed TED Stage Atmosphere */
+/* Hero Section Background - Framed Head to Half-Body with Scroll Reveal */
 .hero {
   min-height: 100vh;
   padding-top: clamp(6.5rem, 12vh, 8.5rem);
@@ -510,9 +510,11 @@ body {
   position: relative;
   overflow: hidden;
   background: var(--bg-dark);
+  z-index: 2;
 }
 
 .hero-bg-overlay {
+  display: block;
   position: absolute;
   top: 0;
   left: 0;
@@ -520,31 +522,35 @@ body {
   height: 100%;
   z-index: 1;
   background-image: 
-    linear-gradient(to bottom, rgba(7, 12, 24, 0.4) 0%, transparent 20%, transparent 80%, rgba(7, 12, 24, 0.95) 100%),
+    linear-gradient(to bottom, rgba(7, 12, 24, 0.45) 0%, transparent 25%, transparent 75%, rgba(7, 12, 24, 0.95) 100%),
     linear-gradient(90deg, 
-      rgba(7, 12, 24, 0.92) 0%, 
-      rgba(7, 12, 24, 0.72) 38%, 
-      rgba(7, 12, 24, 0.25) 68%, 
+      rgba(7, 12, 24, 0.88) 0%, 
+      rgba(7, 12, 24, 0.58) 38%, 
+      rgba(7, 12, 24, 0.15) 75%, 
       transparent 100%),
     url('assets/hero_ted_background.jpg');
   background-size: cover;
-  background-position: right 15%;
+  background-position: center 15%; /* Perfectly framed: A little above head down to half body */
   opacity: 0.95;
-  filter: none; /* 100% sharp image, zero blur */
+  filter: none; /* 100% sharp image */
   pointer-events: none;
-  animation: heroKenBurns 24s ease-in-out infinite;
+  transition: opacity 0.15s ease-out, background-position 0.15s ease-out;
 }
 
 [data-theme="light"] .hero-bg-overlay {
   background-image: 
-    linear-gradient(to bottom, rgba(255, 241, 242, 0.4) 0%, transparent 20%, transparent 80%, rgba(255, 228, 230, 0.95) 100%),
+    linear-gradient(to bottom, rgba(255, 241, 242, 0.45) 0%, transparent 25%, transparent 75%, rgba(255, 228, 230, 0.95) 100%),
     linear-gradient(90deg, 
-      rgba(255, 241, 242, 0.92) 0%, 
-      rgba(255, 228, 230, 0.72) 38%, 
-      rgba(254, 205, 211, 0.25) 68%, 
+      rgba(255, 241, 242, 0.9) 0%, 
+      rgba(255, 228, 230, 0.7) 38%, 
+      rgba(254, 205, 211, 0.25) 75%, 
       transparent 100%),
     url('assets/hero_ted_background.jpg');
   opacity: 0.92;
+}
+
+.global-fixed-bg {
+  display: none;
 }
 
 @keyframes heroKenBurns {
@@ -580,6 +586,140 @@ body {
 .hero-highlights-list li i {
   color: var(--accent-emerald);
   font-size: 1rem;
+}
+
+/* Core Automation Platforms Badge Strip in Hero */
+.hero-platforms-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.platforms-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-emerald);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.platform-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-md);
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="light"] .platform-badge {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.platform-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.platform-badge-rockwell:hover {
+  border-color: #E31837;
+  background: rgba(227, 24, 55, 0.15);
+}
+
+.platform-badge-codesys:hover {
+  border-color: #E2001A;
+  background: rgba(226, 0, 26, 0.15);
+}
+
+.platform-logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.platform-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.platform-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.platform-sub {
+  font-size: 0.74rem;
+  color: var(--accent-emerald);
+  font-weight: 500;
+}
+
+/* Floating Top Corner Tech Badges on Executive Portrait Card */
+.hero-top-tech-badges {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  right: 0.85rem;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.hero-tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(11, 19, 43, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  padding: 0.35rem 0.75rem;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-tech-pill:hover {
+  transform: scale(1.05);
+}
+
+.hero-tech-rockwell:hover {
+  border-color: #FF4D6D;
+}
+
+.hero-tech-codesys:hover {
+  border-color: #E2001A;
+}
+
+.hero-tech-pill img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.bar-icon-logo {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 0.2rem;
 }
 
 .hero-signature-quote {
@@ -874,36 +1014,104 @@ body {
   margin-top: 2rem;
 }
 
+/* Executive Glassmorphism Pillar Cards with Subtle Ambient Glowing Accents */
 .pillar-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 3vw, 2rem);
+  padding: clamp(1.75rem, 3.5vw, 2.25rem);
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 1;
 }
 
+/* Card 1: Global R&D & NPD - Subtle Emerald Glow */
+.pillar-card-npd {
+  background: 
+    radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.12) 0%, transparent 55%),
+    var(--bg-card);
+}
+
+/* Card 2: Data Center & Liquid Cooling - Subtle Cyan AI Glow */
+.pillar-card-datacenter {
+  background: 
+    radial-gradient(circle at 90% 10%, rgba(6, 182, 212, 0.14) 0%, transparent 55%),
+    var(--bg-card);
+}
+
+/* Card 3: Environmental Green Protection - Subtle Amber/Green Eco Glow */
+.pillar-card-green {
+  background: 
+    radial-gradient(circle at 90% 10%, rgba(245, 158, 11, 0.12) 0%, transparent 55%),
+    var(--bg-card);
+}
+
+/* Light Mode Ambient Card Gradients */
+[data-theme="light"] .pillar-card-npd {
+  background: 
+    radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.15) 0%, transparent 60%),
+    rgba(255, 255, 255, 0.92);
+}
+
+[data-theme="light"] .pillar-card-datacenter {
+  background: 
+    radial-gradient(circle at 90% 10%, rgba(6, 182, 212, 0.15) 0%, transparent 60%),
+    rgba(255, 255, 255, 0.92);
+}
+
+[data-theme="light"] .pillar-card-green {
+  background: 
+    radial-gradient(circle at 90% 10%, rgba(245, 158, 11, 0.15) 0%, transparent 60%),
+    rgba(255, 255, 255, 0.92);
+}
+
+/* Top Accent Line on Hover */
 .pillar-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 4px;
+  height: 3px;
   background: var(--accent-gradient);
   opacity: 0;
   transition: var(--transition-smooth);
 }
 
+/* Interactive Hover State */
 .pillar-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--border-highlight);
-  box-shadow: var(--shadow-main);
+  transform: translateY(-6px);
+  border-color: var(--accent-emerald);
+  box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.25);
 }
 
 .pillar-card:hover::before {
   opacity: 1;
+}
+
+.pillar-card-npd:hover {
+  background: 
+    radial-gradient(circle at 90% 10%, rgba(16, 185, 129, 0.22) 0%, transparent 65%),
+    var(--bg-card-hover);
+}
+
+.pillar-card-datacenter:hover {
+  background: 
+    radial-gradient(circle at 90% 10%, rgba(6, 182, 212, 0.24) 0%, transparent 65%),
+    var(--bg-card-hover);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.25);
+}
+
+.pillar-card-green:hover {
+  background: 
+    radial-gradient(circle at 90% 10%, rgba(245, 158, 11, 0.22) 0%, transparent 65%),
+    var(--bg-card-hover);
+  border-color: rgba(245, 158, 11, 0.8);
+  box-shadow: 0 20px 40px -15px rgba(245, 158, 11, 0.25);
 }
 
 .pillar-icon {

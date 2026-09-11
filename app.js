@@ -649,7 +649,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  setInterval(enforceNoGoogleHeader, 200);
+  // 10. Scroll-driven Hero Photo Reveal (Head to Half-Body Framed Reveal)
+  const heroBgOverlay = document.querySelector('.hero-bg-overlay');
+  const heroContent = document.querySelector('.hero-content');
+  const heroImageWrapper = document.querySelector('.hero-image-wrapper');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const heroHeight = document.getElementById('hero')?.offsetHeight || 800;
+
+    if (scrollY <= heroHeight * 1.4) {
+      const scrollRatio = Math.min(scrollY / (heroHeight * 0.75), 1);
+
+      // Hero text & front card drift up with parallax
+      if (heroContent) {
+        heroContent.style.transform = `translateY(${scrollY * 0.28}px)`;
+        heroContent.style.opacity = `${1 - scrollRatio * 1.05}`;
+      }
+      if (heroImageWrapper) {
+        heroImageWrapper.style.transform = `translateY(${scrollY * 0.2}px)`;
+        heroImageWrapper.style.opacity = `${1 - scrollRatio * 1.05}`;
+      }
+
+      // Smooth scroll reveal: Lightens overlay & pans within head-to-half-body frame (15% to 32%)
+      if (heroBgOverlay) {
+        const bgPosY = 15 + (scrollRatio * 17);
+        heroBgOverlay.style.backgroundPosition = `center ${bgPosY}%`;
+        const overlayOpacity = Math.max(0.95 - scrollRatio * 0.8, 0.15);
+        heroBgOverlay.style.opacity = overlayOpacity;
+      }
+    }
+  }, { passive: true });
 
   autoDetectCountryAndLanguage();
 });

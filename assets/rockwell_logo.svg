@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="raOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B00"/>
+      <stop offset="100%" stop-color="#E04000"/>
+    </linearGradient>
+    <linearGradient id="raRedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E31837"/>
+      <stop offset="100%" stop-color="#B8001F"/>
+    </linearGradient>
+  </defs>
+  <!-- Octagon Base Outer Path -->
+  <path d="M 60 10 L 140 10 L 190 60 L 190 140 L 140 190 L 60 190 L 10 140 L 10 60 Z" fill="url(#raRedGrad)" />
+  <!-- Top Orange Slice -->
+  <path d="M 60 10 L 140 10 L 190 60 L 140 60 L 90 35 Z" fill="url(#raOrangeGrad)" opacity="0.9" />
+  <!-- RA Text stylized inside octagon -->
+  <g fill="#FFFFFF">
+    <!-- R -->
+    <path d="M 42 70 H 76 C 88 70 96 77 96 88 C 96 96 90 102 80 104 L 96 130 H 79 L 65 106 H 57 V 130 H 42 V 70 Z M 57 82 V 94 H 74 C 80 94 83 92 83 88 C 83 84 80 82 74 82 H 57 Z"/>
+    <!-- A -->
+    <path d="M 120 70 L 144 130 H 129 L 124 117 H 104 L 99 130 H 85 L 109 70 H 120 Z M 114 82 L 108 105 H 120 Z"/>
+  </g>
+</svg>
