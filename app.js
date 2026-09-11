@@ -593,6 +593,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function autoDetectCountryAndLanguage() {
+    // Skip external API calls when Googlebot / search engine crawlers inspect the page
+    const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse/i.test(navigator.userAgent);
+    if (isBot) {
+      applyLanguage('en');
+      return;
+    }
+
     const savedLang = localStorage.getItem('user_selected_lang');
     if (savedLang && langMap[savedLang]) {
       applyLanguage(savedLang);
