@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://bhumish-panchal.github.io/portfolio/</loc>
-    <lastmod>2026-09-09</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://bhumish-panchal.github.io/portfolio/assets/bhumish_ceo_square.jpg</image:loc>
+      <image:title>Bhumish Panchal - R&amp;D Product Development Specialist</image:title>
+      <image:caption>Official Profile Photo of Bhumish Panchal</image:caption>
+    </image:image>
   </url>
 </urlset>
