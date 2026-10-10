@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://bhumishpanchal.com/</loc>
     <lastmod>2026-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    
+    <!-- European Multi-Language Regional Tags (hreflang) -->
+    <xhtml:link rel="alternate" hreflang="en" href="https://bhumishpanchal.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bhumishpanchal.com/?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bhumishpanchal.com/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://bhumishpanchal.com/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://bhumishpanchal.com/?lang=nl"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://bhumishpanchal.com/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bhumishpanchal.com/"/>
+
+    <!-- Primary Headshot Image for Google Search Snippets -->
     <image:image>
       <image:loc>https://bhumishpanchal.com/assets/bhumish_ceo_square.jpg</image:loc>
       <image:title>Bhumish Panchal - R&amp;D Product Development Specialist</image:title>
